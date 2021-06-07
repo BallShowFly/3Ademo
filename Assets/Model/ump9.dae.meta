@@ -1,0 +1,258 @@
+fileFormatVersion: 2
+guid: 2c871eff638ea1847a8acb55db024bdb
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: barrel_low
+    100002: bolt carrier lever_low
+    100004: bolt carrier_low
+    100006: button_low
+    100008: carry handle_low
+    100010: fire select_low
+    100012: flash hider_low
+    100014: mag catch_low
+    100016: magazine_low
+    100018: //RootNode
+    100020: pistol grip_low
+    100022: rear sight adjustment_low
+    100024: sight_low
+    100026: stock_low
+    100028: trigger_low
+    100030: upper reciever_low
+    400000: barrel_low
+    400002: bolt carrier lever_low
+    400004: bolt carrier_low
+    400006: button_low
+    400008: carry handle_low
+    400010: fire select_low
+    400012: flash hider_low
+    400014: mag catch_low
+    400016: magazine_low
+    400018: //RootNode
+    400020: pistol grip_low
+    400022: rear sight adjustment_low
+    400024: sight_low
+    400026: stock_low
+    400028: trigger_low
+    400030: upper reciever_low
+    2100000: Material_008
+    2100002: Material_006
+    2100004: Material_007
+    2100006: Material_015
+    2100008: Material_013
+    2100010: Material_012
+    2100012: Material_016
+    2100014: Material_017
+    2100016: Material_011
+    2100018: Material_014
+    2100020: Material_010
+    2100022: Material_009
+    2100024: Material_005
+    2100026: Material_002
+    2100028: Material_004
+    2300000: barrel_low
+    2300002: bolt carrier lever_low
+    2300004: bolt carrier_low
+    2300006: button_low
+    2300008: carry handle_low
+    2300010: fire select_low
+    2300012: flash hider_low
+    2300014: mag catch_low
+    2300016: magazine_low
+    2300018: pistol grip_low
+    2300020: rear sight adjustment_low
+    2300022: sight_low
+    2300024: stock_low
+    2300026: trigger_low
+    2300028: upper reciever_low
+    3300000: barrel_low
+    3300002: bolt carrier lever_low
+    3300004: bolt carrier_low
+    3300006: button_low
+    3300008: carry handle_low
+    3300010: fire select_low
+    3300012: flash hider_low
+    3300014: mag catch_low
+    3300016: magazine_low
+    3300018: pistol grip_low
+    3300020: rear sight adjustment_low
+    3300022: sight_low
+    3300024: stock_low
+    3300026: trigger_low
+    3300028: upper reciever_low
+    4300000: trigger_low
+    4300002: fire select_low
+    4300004: mag catch_low
+    4300006: button_low
+    4300008: stock_low
+    4300010: magazine_low
+    4300012: sight_low
+    4300014: rear sight adjustment_low
+    4300016: carry handle_low
+    4300018: flash hider_low
+    4300020: barrel_low
+    4300022: upper reciever_low
+    4300024: pistol grip_low
+    4300026: bolt carrier lever_low
+    4300028: bolt carrier_low
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_002
+    second: {fileID: 2100000, guid: d9e433f976ff25547b0329bfec4c13d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_004
+    second: {fileID: 2100000, guid: 3c8a35513488ab44986533c1f7d788e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_005
+    second: {fileID: 2100000, guid: d9e433f976ff25547b0329bfec4c13d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_006
+    second: {fileID: 2100000, guid: 84163f6c4a3ca9642b6fefdadc774263, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_007
+    second: {fileID: 2100000, guid: 8bb4fb4f9a70cde4b929b7cae84d9e69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_008
+    second: {fileID: 2100000, guid: 749d49e42cf4c404ca5ddf70a1f6a7d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_009
+    second: {fileID: 2100000, guid: 33f49bec461b5c740a2749fa1a4bb5b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_010
+    second: {fileID: 2100000, guid: 09b8d33bd4ad67040a732c8213bea31c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_011
+    second: {fileID: 2100000, guid: 0c92935b818f1fb44a8a3f1a759d131d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_012
+    second: {fileID: 2100000, guid: bc2f41b4e9108b043961ad3f05d5f999, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_013
+    second: {fileID: 2100000, guid: 4c0cb95ce82c4d546acf18281d119291, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_014
+    second: {fileID: 2100000, guid: 916c7936b88a03f43bdcec2f2453ca55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_015
+    second: {fileID: 2100000, guid: 12655d3677aecfb4aa0b9cd88e7dfeb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_016
+    second: {fileID: 2100000, guid: cf398e7a514a24044896f7df0a8a7b15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_017
+    second: {fileID: 2100000, guid: e7aabe96fcd43884ab917e44e6d856ac, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

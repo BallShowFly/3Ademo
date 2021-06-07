@@ -1,0 +1,210 @@
+fileFormatVersion: 2
+guid: 4f6461891fb266940a5da3d9d4b37287
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: arms
+    100002: //RootNode
+    100004: L_arm
+    100006: L_arm_Pole
+    100008: L_elbow
+    100010: L_middle1
+    100012: L_middle2
+    100014: L_middle3
+    100016: L_middle4
+    100018: L_pink1
+    100020: L_pink2
+    100022: L_pink3
+    100024: L_pink4
+    100026: L_point1
+    100028: L_point2
+    100030: L_point3
+    100032: L_point4
+    100034: L_ring1
+    100036: L_ring2
+    100038: L_ring3
+    100040: L_ring4
+    100042: L_thumb1
+    100044: L_thumb2
+    100046: L_thumb3
+    100048: L_thumb4
+    100050: L_wrist
+    100052: L_wrist_Goal
+    100054: R_arm
+    100056: R_arm_Pole
+    100058: R_elbow
+    100060: R_middle1
+    100062: R_middle2
+    100064: R_middle3
+    100066: R_middle4
+    100068: R_pink1
+    100070: R_pink2
+    100072: R_pink3
+    100074: R_pink4
+    100076: R_point1
+    100078: R_point2
+    100080: R_point3
+    100082: R_point4
+    100084: R_ring1
+    100086: R_ring2
+    100088: R_ring3
+    100090: R_ring4
+    100092: R_thumb1
+    100094: R_thumb2
+    100096: R_thumb3
+    100098: R_thumb4
+    100100: R_wrist
+    100102: R_wrist_Goal
+    400000: arms
+    400002: //RootNode
+    400004: L_arm
+    400006: L_arm_Pole
+    400008: L_elbow
+    400010: L_middle1
+    400012: L_middle2
+    400014: L_middle3
+    400016: L_middle4
+    400018: L_pink1
+    400020: L_pink2
+    400022: L_pink3
+    400024: L_pink4
+    400026: L_point1
+    400028: L_point2
+    400030: L_point3
+    400032: L_point4
+    400034: L_ring1
+    400036: L_ring2
+    400038: L_ring3
+    400040: L_ring4
+    400042: L_thumb1
+    400044: L_thumb2
+    400046: L_thumb3
+    400048: L_thumb4
+    400050: L_wrist
+    400052: L_wrist_Goal
+    400054: R_arm
+    400056: R_arm_Pole
+    400058: R_elbow
+    400060: R_middle1
+    400062: R_middle2
+    400064: R_middle3
+    400066: R_middle4
+    400068: R_pink1
+    400070: R_pink2
+    400072: R_pink3
+    400074: R_pink4
+    400076: R_point1
+    400078: R_point2
+    400080: R_point3
+    400082: R_point4
+    400084: R_ring1
+    400086: R_ring2
+    400088: R_ring3
+    400090: R_ring4
+    400092: R_thumb1
+    400094: R_thumb2
+    400096: R_thumb3
+    400098: R_thumb4
+    400100: R_wrist
+    400102: R_wrist_Goal
+    2100000: sleeves
+    2100002: gloves
+    4300000: arms
+    9500000: //RootNode
+    13700000: arms
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gloves
+    second: {fileID: 2100000, guid: 6d2535bf8d2d69d43b64ca8ecf9527f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sleeves
+    second: {fileID: 2100000, guid: 717193ea2eef2104585d0bbfd8935777, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: L_arm
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
