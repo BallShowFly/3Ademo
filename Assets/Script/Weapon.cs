@@ -14,6 +14,10 @@ public class Weapon : MonoBehaviour
     [Header("ads")]
     public float adstime;
     private float t_adstime;
+
+    [Header("curve")]
+    public AnimationCurve curve;
+
     public float T_adstime
     {
         get => this.t_adstime;
