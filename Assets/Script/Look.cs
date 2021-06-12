@@ -41,6 +41,7 @@ public class Look : MonoBehaviour
         if (Quaternion.Angle(camoriginpo, t_delata) < maxsangle)
         {
             cam.localRotation = t_delata;
+ 
             weapon.transform.localRotation = cam.localRotation;
         }
 

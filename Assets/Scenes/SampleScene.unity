@@ -1571,6 +1571,7 @@ MonoBehaviour:
   walkmovespeed: 150
   sprintmovespeed: 200
   idlespeedlimit: 0.1
+  idleSpeedLimit_Ads: 0.025
   adsmovespeed: 50
   cam: {fileID: 1350128295}
   fovmodifier: 1
@@ -1621,48 +1622,44 @@ MonoBehaviour:
   weaponanimator: {fileID: 2026722655}
   player: {fileID: 436105442}
   adstime: 0.2
-  curve:
+  weaponsway: {fileID: 518419487}
+  camera: {fileID: 1350128295}
+  targetfov: 0
+  startfov: 0
+  smooth: 40
+  adscurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: -0.009643555
-      inSlope: 2
-      outSlope: 2
+      time: 0.0015029907
+      value: 0.01361084
+      inSlope: 0.17505914
+      outSlope: 0.17505914
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.08297716
+    - serializedVersion: 3
+      time: 0.20186527
+      value: 0.10207344
+      inSlope: 0.9527741
+      outSlope: 0.9527741
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.35041654
-      value: 0.99517035
-      inSlope: -0.061838325
-      outSlope: 0.07246659
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.31784767
-    - serializedVersion: 3
-      time: 0.55405295
-      value: 0.6945537
-      inSlope: -2.3335705
-      outSlope: -2.3335705
+      time: 0.79963833
+      value: 0.90000635
+      inSlope: 0.88965493
+      outSlope: 0.88965493
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.14314172
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.6982941
-      value: 0.38450375
-      inSlope: -1.9614465
-      outSlope: -1.9614465
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.0810712
-    - serializedVersion: 3
-      time: 0.998379
-      value: 0.0006485004
+      time: 1.0000386
+      value: 1.0017089
       inSlope: 0.10261817
       outSlope: 0.10261817
       tangentMode: 0
@@ -1672,9 +1669,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  weaponsway: {fileID: 518419487}
-  camera: {fileID: 1350128295}
-  adsfov: 0
+  firerate: 0
 --- !u!1 &443211717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,31 +3287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5787e2debb5e3dd449a41adc163fef8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.0020141602
-      inSlope: 3.8005397
-      outSlope: 3.8005397
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.016140005
-    - serializedVersion: 3
-      time: 0.91380155
-      value: 0.9903753
-      inSlope: 0.14950635
-      outSlope: 0.07246659
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.6053522
-      outWeight: 0.31784767
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  test: {fileID: 796344135}
 --- !u!65 &796344137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3719,8 +3689,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917365147}
-  m_LocalRotation: {x: -0.0000028088027, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.38389117, y: 0.07539361, z: -0.34417564}
+  m_LocalRotation: {x: -0.0015042073, y: -0.000024316732, z: 0.000017377939, w: 0.99999887}
+  m_LocalPosition: {x: -0.38393444, y: 0.07762299, z: -0.34410578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 518419488}
@@ -4111,14 +4081,14 @@ MonoBehaviour:
   z_maxrotang: 10
   z_Negmaxrotang: -10
   player: {fileID: 436105442}
-  y_sensitivity_ads: 50
-  x_sensitivity_ads: 50
+  y_sensitivity_ads: 40
+  x_sensitivity_ads: 40
   x_Negmaxrotang_ads: -0.5
   x_maxrotang_ads: 0.5
   y_Negmaxrotang_ads: -0.5
   y_maxrotang_ads: 0.5
-  z_maxrotang_ads: 0.5
-  z_Negmaxrotang_ads: -0.5
+  z_maxrotang_ads: 0.4
+  z_Negmaxrotang_ads: -0.4
   moveweaponsway: {fileID: 2026722655}
   weaponpoint: {fileID: 518419487}
   playerweapon: {fileID: 436105444}
@@ -4878,7 +4848,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 48
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

@@ -8,6 +8,7 @@ public class Motion : MonoBehaviour
     public float walkmovespeed;
     public float sprintmovespeed;
     public float idlespeedlimit;
+    public float idleSpeedLimit_Ads;
     public float adsmovespeed;
     private float realmovespeed;
     private float _pramovespeed;
@@ -43,7 +44,7 @@ public class Motion : MonoBehaviour
 
     public enum MoveMode
     {
-        walk,sprint,idle,fall,ads
+        walk,sprint,idle,fall,adsidle,adswalk
     }
     public MoveMode movemode;
     // Start is called before the first frame update
@@ -60,6 +61,7 @@ public class Motion : MonoBehaviour
     private void Update()
     {
         getspeed();
+
     }
 
     void FixedUpdate()
@@ -76,9 +78,14 @@ public class Motion : MonoBehaviour
         float h_movedir = Input.GetAxis("Vertical");
         Vector3 movedir = new Vector3(f_movedir, 0, h_movedir).normalized;
         //移动模式
-        if (weapon.T_adstime>= 0 && weapon._Aimmode == Weapon.AimMode.ads)
+        if ((weapon.T_adstime> 0 || weapon._Aimmode == Weapon.AimMode.ads) && Pramovespeed <= idleSpeedLimit_Ads)
         {
-            movemode = MoveMode.ads;
+            movemode = MoveMode.adsidle;
+        }
+
+        else if ((weapon.T_adstime > 0 || weapon._Aimmode == Weapon.AimMode.ads) && Pramovespeed > idleSpeedLimit_Ads)
+        {
+            movemode = MoveMode.adswalk;
         }
         else if (Input.GetKey("q"))
         {
@@ -107,9 +114,14 @@ public class Motion : MonoBehaviour
                 realmovespeed = sprintmovespeed;
                 realfov = Mathf.Lerp(cam.fieldOfView, basefov * fovmodifier, Time.deltaTime * fovtranslator);
                 break;
-            case MoveMode.ads:
+            case MoveMode.adswalk:
                 realmovespeed = adsmovespeed;
                 break;
+
+            case MoveMode.adsidle:
+                realmovespeed = adsmovespeed;
+                break;
+
         }
 
 
@@ -117,7 +129,9 @@ public class Motion : MonoBehaviour
         Vector3 t_velocity = transform.TransformDirection(movedir * realmovespeed * Time.deltaTime);
         t_velocity.y = rb.velocity.y;
         rb.velocity = t_velocity;
+        /*
         cam.fieldOfView = realfov;
+        */
     }
     void jump()
     {
@@ -161,7 +175,6 @@ public class Motion : MonoBehaviour
     void getspeed()
     {
         _pramovespeed = rb.velocity.magnitude;
-
     }
 
    
