@@ -54,7 +54,9 @@ public class Weapon : MonoBehaviour
 
     [Header("shoot")]
     public float firerate;
+    public float firerate_single;
     private float t_firerate;
+
 
 
 
@@ -71,8 +73,9 @@ public class Weapon : MonoBehaviour
         targetfov = adsfov;
         fov_current = camera.fieldOfView;
         iscamerachanging = false;
-        //
 
+        //射击初始化
+        t_firerate = 0;
         ani_iswitchtoads = false;
     }
 
@@ -99,8 +102,7 @@ public class Weapon : MonoBehaviour
         //shoot
         if(_aimmode == AimMode.ads)
         {
-            singleShoot();
-            autoShoot();
+            Shoot();
         }
 
 
@@ -233,27 +235,37 @@ public class Weapon : MonoBehaviour
 
     #region shoot
 
-    void singleShoot()
+    void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        Debug.Log(t_firerate);
+ 
+        if(t_firerate > 0)
         {
+            t_firerate -= Time.deltaTime;
+        }
+  
+        if (Input.GetMouseButtonDown (0))
+        {
+            if(t_firerate > firerate)
+            {
+                return;
+            }
+
             float randomValue = Random.Range(1, 3);
-            Debug.Log(randomValue);
             if(randomValue == 1)
             {
               
                 weaponanimator.SetTrigger("SingleShoot1");
               
             }
-            if(randomValue == 2)
+            if (randomValue == 2)
             {
                 weaponanimator.SetTrigger("SingleShoot2");
             }
+            t_firerate = firerate;
         }
     }
-    void autoShoot()
-    {
-    }
+   
 
     #endregion
 
