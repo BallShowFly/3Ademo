@@ -235,33 +235,44 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log(t_firerate);
- 
-        if(t_firerate > 0)
+        if(t_firerate < 0.5)
         {
-            t_firerate -= Time.deltaTime;
+            t_firerate += Time.deltaTime;
         }
   
-        if (Input.GetMouseButtonDown (0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(t_firerate > firerate)
+            if(t_firerate < firerate)
             {
                 return;
             }
 
-            float randomValue = Random.Range(1, 3);
-            if(randomValue == 1)
+            if (t_firerate > firerate_single)
             {
-              
-                weaponanimator.SetTrigger("SingleShoot1");
-              
-            }
-            if (randomValue == 2)
-            {
-                weaponanimator.SetTrigger("SingleShoot2");
-            }
-            t_firerate = firerate;
+             
+                float randomValue = Random.Range(1, 3);
+                if (randomValue == 1)
+                {
+                    weaponanimator.SetTrigger("SingleShoot1");
+
+                }
+                if (randomValue == 2)
+                {
+                    weaponanimator.SetTrigger("SingleShoot2");
+                }
+                t_firerate = 0;
+                return;
+            }          
         }
+        if (Input.GetMouseButton(0))
+        {
+            if (  t_firerate < firerate_single && t_firerate > firerate)
+            {
+                weaponanimator.SetTrigger("AutoShoot1");
+                t_firerate = 0;
+            }
+        }
+
     }
    
 
