@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     private GameObject currentweapon;
     public Animator weaponanimator;
     public Motion player;
+    public Animator camera_animator;
 
     [Header("ads")]
     public float adstime;
@@ -38,7 +39,7 @@ public class Weapon : MonoBehaviour
     public float targetfov;
     public float startfov;
     private bool ani_iswitchtoads;
-    private bool iscamerachanging;
+    private bool isfovchaging;
     private float adscam_time_current = 0;
     private float adscam_time_need;
     public float smooth;
@@ -54,12 +55,29 @@ public class Weapon : MonoBehaviour
     public float firerate;
     public float firerate_single;
     private float t_firerate;
+    private float t_randomValue;
+
+    [Header("shootcamera")]
+    public float X;
+    public float Y;
+    public float Z;
+    public float shootcamera_time;
+    public GameObject cameraparent;
+    private Quaternion originrot;
+
+    static private float curve_xminvalue_shoot = 1;
+    static private float curve_xmaxvalue_shoot = 1;
+    static private float curve_yminvalue_shoot = 1;
+    static private float curve_ymaxvalue_shoot = 1;
+
+    public AnimationCurve ShootCameraCurve = new AnimationCurve(new Keyframe(curve_xmaxvalue_shoot, curve_xmaxvalue_shoot), new Keyframe(curve_yminvalue_shoot, curve_ymaxvalue_shoot));
+
+    private bool isCamera_shaking;
+    private float shootCamera_currenttime;
 
 
 
-
-
-    // Start is called before the first frame updateiscamerachanging
+    // Start is called before the first frame updateisfovchaging
     void Start()
     {
         //默认装备武器
@@ -70,11 +88,12 @@ public class Weapon : MonoBehaviour
         iscaladstime = false;
         targetfov = adsfov;
         fov_current = camera.fieldOfView;
-        iscamerachanging = false;
+        isfovchaging = false;
 
         //射击初始化
         t_firerate = 0;
         ani_iswitchtoads = false;
+        originrot = cameraparent.transform.localRotation;
     }
 
     // Update is called once per frame
@@ -91,8 +110,7 @@ public class Weapon : MonoBehaviour
         //ads
         ads();
 
-        //测试ADScamera变化
-        if(iscamerachanging == true)
+        if(isfovchaging == true)
         {
             ads_cam();
         }
@@ -101,6 +119,11 @@ public class Weapon : MonoBehaviour
         if(_aimmode == AimMode.ads)
         {
             Shoot();
+        }
+
+        if(isCamera_shaking == true)
+        {
+            shootcamera();
         }
 
 
@@ -173,7 +196,7 @@ public class Weapon : MonoBehaviour
                 weaponanimator.SetTrigger("IsSwitchToAds");
 
                 adscam_time_need = adstime;
-                iscamerachanging = true;
+                isfovchaging = true;
                 targetfov = adsfov;
                 startfov = fov_current;
             }
@@ -185,7 +208,7 @@ public class Weapon : MonoBehaviour
                 weaponanimator.SetTrigger("IsSwitchToHip");
 
                 adscam_time_need = 0.12f;
-                iscamerachanging = true;
+                isfovchaging = true;
                 targetfov = normalfov;
                 startfov = adsfov;
             }
@@ -214,33 +237,29 @@ public class Weapon : MonoBehaviour
         if (adscam_time_current >= adscam_time_need )
         {
             adscam_time_current = 0;
-            iscamerachanging = false;
+            isfovchaging = false;
             return;
         }
-
-
         adscam_time_current += Time.deltaTime;
         float time_ratio = curve_xmaxvalue / adscam_time_need;
 
         float t_camfov = startfov - adscurve.Evaluate(adscam_time_current * time_ratio) * (startfov - targetfov);
         camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, t_camfov, smooth * Time.deltaTime);
-        
-        
+               
     }
-
-
 
 
     #region shoot
 
     void Shoot()
     {
+        float pre_randomvaule = t_randomValue;
         if(t_firerate < 0.5)
         {
             t_firerate += Time.deltaTime;
         }
   
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             if(t_firerate < firerate)
             {
@@ -249,33 +268,59 @@ public class Weapon : MonoBehaviour
 
             if (t_firerate > firerate_single)
             {
-             
-                float randomValue = Random.Range(1, 3);
-                if (randomValue == 1)
+                do
+                {
+                    t_randomValue = Random.Range(1, 4);
+                }
+                while (t_randomValue == pre_randomvaule);
+
+                if (t_randomValue == 1)
                 {
                     weaponanimator.SetTrigger("SingleShoot1");
 
                 }
-                if (randomValue == 2)
+                if (t_randomValue == 2)
                 {
                     weaponanimator.SetTrigger("SingleShoot2");
                 }
+                if(t_randomValue == 3)
+                {
+                    weaponanimator.SetTrigger("SingleShoot3");
+                }
+                isCamera_shaking = true;
                 t_firerate = 0;
+
+                camera_animator.SetTrigger("ShootCamera");
                 return;
             }          
-        }
-        if (Input.GetMouseButton(0))
-        {
-            if (  t_firerate < firerate_single && t_firerate > firerate)
-            {
-                weaponanimator.SetTrigger("AutoShoot1");
-                t_firerate = 0;
-            }
-        }
+        }      
 
     }
    
+    void shootcamera()
+    {
+        if(shootCamera_currenttime >= shootcamera_time)
+        {
+            shootCamera_currenttime = 0;
+            isCamera_shaking = false;
+            return;
+        }
+        Debug.Log("operating");
+        shootCamera_currenttime += Time.deltaTime;
+        
+     
+        float time_ratio = curve_xmaxvalue_shoot / shootcamera_time;
+        float t_camshake_x = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * X;
+        float t_camshake_y = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * Y;
+        Debug.Log(t_camshake_y);
+        float t_camshake_z = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * Z;
 
+        Quaternion t_xadj = Quaternion.AngleAxis(t_camshake_x, -Vector3.up);
+        Quaternion t_yadj = Quaternion.AngleAxis(t_camshake_y, Vector3.right);
+        Quaternion t_zadj = Quaternion.AngleAxis(t_camshake_z, -Vector3.forward);
+
+        cameraparent.transform.localRotation = originrot * t_xadj * t_yadj * t_zadj;
+    }
     #endregion
 
 
