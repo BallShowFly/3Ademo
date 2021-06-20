@@ -289,7 +289,6 @@ public class Weapon : MonoBehaviour
                 }
                 isCamera_shaking = true;
                 t_firerate = 0;
-
                 camera_animator.SetTrigger("ShootCamera");
                 return;
             }          
