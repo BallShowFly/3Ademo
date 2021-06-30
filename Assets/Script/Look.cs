@@ -12,12 +12,14 @@ public class Look : MonoBehaviour
     public float maxsangle;
     static public bool iscursorlock;
     public GameObject weapon;
+    public Weapon _weapon;
     // Start is called before the first frame update
     void Start()
     {
         camoriginpo = cam.localRotation;
         iscursorlock = false;
         setcursormode();
+        
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class Look : MonoBehaviour
     }
     void setY()
     {
-        float t_camYmove = Input.GetAxis("Mouse Y") * Ysensivity * Time.deltaTime;
+        float t_camYmove = Input.GetAxis("Mouse Y") * Ysensivity * Time.deltaTime + _weapon.Y_adj;
         Quaternion t_adj = Quaternion.AngleAxis(t_camYmove, -Vector3.right);
         Quaternion t_delata = cam.localRotation * t_adj;
 
@@ -48,7 +50,7 @@ public class Look : MonoBehaviour
     }
     void setX()
     {
-        float t_camXmove = Input.GetAxis("Mouse X") * Xsensivity * Time.deltaTime;
+        float t_camXmove = Input.GetAxis("Mouse X") * Xsensivity * Time.deltaTime + _weapon.X_adj;
         Quaternion t_adj = Quaternion.AngleAxis(t_camXmove, Vector3.up);
         Quaternion t_delata = player.localRotation * t_adj;
         player.localRotation = t_delata;

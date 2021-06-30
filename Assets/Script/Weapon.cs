@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     public float adstime;
     private float t_adstime;
     private float fov_current;
-    
+
     public float T_adstime
     {
         get => this.t_adstime;
@@ -49,7 +49,7 @@ public class Weapon : MonoBehaviour
     static private float curve_yminvalue = 1;
     static private float curve_ymaxvalue = 1;
 
-    public AnimationCurve adscurve = new AnimationCurve(new Keyframe(curve_xminvalue,curve_yminvalue),new Keyframe(curve_xmaxvalue,curve_ymaxvalue));
+    public AnimationCurve adscurve = new AnimationCurve(new Keyframe(curve_xminvalue, curve_yminvalue), new Keyframe(curve_xmaxvalue, curve_ymaxvalue));
 
     [Header("shoot")]
     public float firerate;
@@ -60,7 +60,8 @@ public class Weapon : MonoBehaviour
     [Header("shootcamera")]
     public float X;
     public float Y;
-    public float Z;
+    public float Zmin;
+    public float Zmax;
     public float shootcamera_time;
     public GameObject cameraparent;
     private Quaternion originrot;
@@ -75,8 +76,52 @@ public class Weapon : MonoBehaviour
     private bool isCamera_shaking;
     private float shootCamera_currenttime;
 
+    [Header("recoil")]
+    public float recoil_min_ver;
+    public float recoil_max_ver;
+    public float recoil_max_hor;
+    public float recoil_min_hor;
+    public GameObject recoilcamera;
+    public float RecoilCam_smooth;
+    private float[] recoilload = new float[2];
+    private bool isRecoil;
+    private float precious_y;
+    private float precious_x;
+    private float y_adj = 0;
+    private float x_adj = 0;
+    
+    public float Y_adj
+    {
+        get => this.y_adj;
+    }
+    public float X_adj
+    {
+        get => this.x_adj;
+    }
+    private float d_y;
+    public float D_y
+    {
+        get => this.d_y;
+    }
+    private float d_x;
+    public float D_x
+    {
+        get => this.d_x;
+    }
+    private float t_y;
+    public float T_y
+    {
+        get => this.t_y;
+    }
+    private float t_x;
+    public float T_x
+    {
+        get => this.t_x;
+    }
 
-
+    public GameObject weapon;
+   
+    
     // Start is called before the first frame updateisfovchaging
     void Start()
     {
@@ -94,6 +139,9 @@ public class Weapon : MonoBehaviour
         t_firerate = 0;
         ani_iswitchtoads = false;
         originrot = cameraparent.transform.localRotation;
+        isRecoil = false;
+        t_y = 0;
+        t_x = 0;
     }
 
     // Update is called once per frame
@@ -110,27 +158,37 @@ public class Weapon : MonoBehaviour
         //ads
         ads();
 
-        if(isfovchaging == true)
+        if (isfovchaging == true)
         {
             ads_cam();
         }
 
         //shoot
-        if(_aimmode == AimMode.ads)
+        if (_aimmode == AimMode.ads)
         {
             Shoot();
         }
 
-        if(isCamera_shaking == true)
+        if (isCamera_shaking == true)
         {
             shootcamera();
         }
+
+        if(isRecoil == false)
+        {
+            return;
+        }
+        else
+        {
+            recoil();
+        }
+
 
 
     }
     void equip(int x)
     {
-        if(currentweapon != null)
+        if (currentweapon != null)
         {
             Object.Destroy(currentweapon);
         }
@@ -139,11 +197,11 @@ public class Weapon : MonoBehaviour
         /*
         t_euipwepon.transform.localEulerAngles = Vector3.zero;
         */
-  
+
         currentweapon = t_euipwepon;
     }
- //武器动画相关
-# region weaponanimator
+    //武器动画相关
+    #region weaponanimator
     void setweaponanimator()
     {
         //调用冲刺、步行、idle动画
@@ -161,17 +219,17 @@ public class Weapon : MonoBehaviour
         weaponanimator.SetTrigger("Isjumping");
         Debug.Log("It's time using jumping animation!");
     }
-        
+
     public void landanimator()
     {
         weaponanimator.SetTrigger("Islanding");
         Debug.Log("its time using landing animation");
     }
-    
+
     #endregion
 
     //ADS
-    
+
     public void ads()
     {
         //按下鼠标右键后的判断
@@ -200,9 +258,9 @@ public class Weapon : MonoBehaviour
                 targetfov = adsfov;
                 startfov = fov_current;
             }
-            
+
             //目前是ADS，转为hip
-            if(_aimmode == AimMode.ads)
+            if (_aimmode == AimMode.ads)
             {
                 _aimmode = AimMode.hip;
                 weaponanimator.SetTrigger("IsSwitchToHip");
@@ -212,7 +270,7 @@ public class Weapon : MonoBehaviour
                 targetfov = normalfov;
                 startfov = adsfov;
             }
-            
+
         }
         //ADS计时，hip转为ads
         if (iscaladstime == true)
@@ -229,12 +287,12 @@ public class Weapon : MonoBehaviour
                 t_adstime += Time.deltaTime;
             }
         }
- 
+
     }
-    
+
     private void ads_cam()
     {
-        if (adscam_time_current >= adscam_time_need )
+        if (adscam_time_current >= adscam_time_need)
         {
             adscam_time_current = 0;
             isfovchaging = false;
@@ -245,7 +303,7 @@ public class Weapon : MonoBehaviour
 
         float t_camfov = startfov - adscurve.Evaluate(adscam_time_current * time_ratio) * (startfov - targetfov);
         camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, t_camfov, smooth * Time.deltaTime);
-               
+
     }
 
 
@@ -254,14 +312,14 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         float pre_randomvaule = t_randomValue;
-        if(t_firerate < 0.5)
+        if (t_firerate < 0.5)
         {
             t_firerate += Time.deltaTime;
         }
-  
+
         if (Input.GetMouseButton(0))
         {
-            if(t_firerate < firerate)
+            if (t_firerate < firerate)
             {
                 return;
             }
@@ -283,36 +341,46 @@ public class Weapon : MonoBehaviour
                 {
                     weaponanimator.SetTrigger("SingleShoot2");
                 }
-                if(t_randomValue == 3)
+                if (t_randomValue == 3)
                 {
                     weaponanimator.SetTrigger("SingleShoot3");
                 }
                 isCamera_shaking = true;
+
+                isRecoil = true;
+                float[] recoil_load = recoil_cal();
+                d_y = recoil_load[0];
+                d_x = recoil_load[1];
+
                 t_firerate = 0;
                 camera_animator.SetTrigger("ShootCamera");
                 return;
-            }          
-        }      
+            }
+        }
 
     }
-   
+
     void shootcamera()
     {
-        if(shootCamera_currenttime >= shootcamera_time)
+        if (shootCamera_currenttime >= shootcamera_time)
         {
             shootCamera_currenttime = 0;
             isCamera_shaking = false;
             return;
         }
-        Debug.Log("operating");
         shootCamera_currenttime += Time.deltaTime;
-        
-     
+
+        float t_y = Random.Range(Zmin, Zmax);
+        float randomvalule = Random.Range(1, 3);
+        if (randomvalule == 1)
+        {
+            t_y = -t_y;
+        }
+
         float time_ratio = curve_xmaxvalue_shoot / shootcamera_time;
         float t_camshake_x = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * X;
         float t_camshake_y = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * Y;
-        Debug.Log(t_camshake_y);
-        float t_camshake_z = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * Z;
+        float t_camshake_z = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * t_y;
 
         Quaternion t_xadj = Quaternion.AngleAxis(t_camshake_x, -Vector3.up);
         Quaternion t_yadj = Quaternion.AngleAxis(t_camshake_y, Vector3.right);
@@ -320,7 +388,38 @@ public class Weapon : MonoBehaviour
 
         cameraparent.transform.localRotation = originrot * t_xadj * t_yadj * t_zadj;
     }
+
+    float[] recoil_cal()
+    {
+
+        float t_recoil_ver = Random.Range(recoil_min_ver, recoil_max_ver);
+        float t_recoil_hor = Random.Range(recoil_min_hor, recoil_max_hor);
+        float[] recoilload = new float[2] { t_recoil_ver, t_recoil_hor };
+        return recoilload;
+    }
+
+    void recoil()
+    {  if(d_y - t_y <= 0.0001)
+        {
+            isRecoil = false;
+            t_y = 0;
+            precious_y = 0;
+            return;
+        }     
+        t_y = Mathf.Lerp(t_y,d_y, RecoilCam_smooth*Time.deltaTime);
+        t_x = Mathf.Lerp(t_x, d_x, RecoilCam_smooth*Time.deltaTime);
+        y_adj = t_y - precious_y;
+        precious_y = t_y;
+        x_adj = t_x - precious_x;
+        precious_x = t_x;
+        Debug.Log($"t_y = {t_y}");
+        Debug.Log($"d_y = {d_y}");
+        Debug.Log(precious_y);
+        
+    }
+
+}
     #endregion
 
 
-}
+
