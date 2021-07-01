@@ -1732,8 +1732,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   recoil_min_ver: 0.5
   recoil_max_ver: 0.7
-  recoil_max_hor: 1.5
-  recoil_min_hor: 1
+  recoil_max_hor: -0.5
+  recoil_min_hor: 0.5
   recoilcamera: {fileID: 921050527}
   RecoilCam_smooth: 40
   weapon: {fileID: 1909000045}
@@ -4236,8 +4236,8 @@ MonoBehaviour:
   x_maxrotang_ads: 0.5
   y_Negmaxrotang_ads: -0.5
   y_maxrotang_ads: 0.5
-  z_maxrotang_ads: 0.4
-  z_Negmaxrotang_ads: -0.4
+  z_maxrotang_ads: 0.5
+  z_Negmaxrotang_ads: -0.5
   moveweaponsway: {fileID: 2026722655}
   weaponpoint: {fileID: 518419487}
   playerweapon: {fileID: 436105444}

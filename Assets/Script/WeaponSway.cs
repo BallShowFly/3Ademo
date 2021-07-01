@@ -109,9 +109,9 @@ public class WeaponSway : MonoBehaviour
 
 
         //Calculate input
-        float t_xmousemove = Input.GetAxis("Mouse X") * t_x_sensitivity * Time.deltaTime;
+        float t_xmousemove = Input.GetAxis("Mouse X") * t_x_sensitivity * Time.deltaTime ;
         t_xmousemove = Mathf.Clamp(t_xmousemove, t_x_Negmaxrotang, t_x_maxrotang);
-        float t_ymousemove = Input.GetAxis("Mouse Y") * t_y_sensitivity * Time.deltaTime;
+        float t_ymousemove = Input.GetAxis("Mouse Y") * t_y_sensitivity * Time.deltaTime - playerweapon.Y_adj*400;
         t_ymousemove = Mathf.Clamp(t_ymousemove, t_y_Negmaxrotang, t_y_maxrotang);
 
 
@@ -120,7 +120,7 @@ public class WeaponSway : MonoBehaviour
         Quaternion t_xadj = Quaternion.AngleAxis(t_xmousemove, -Vector3.up);
         Quaternion t_yxdj = Quaternion.AngleAxis(t_ymousemove, Vector3.right);
 
-        float t_z = t_xmousemove * z_xpercentage + t_ymousemove * z_ypercentage;
+        float t_z = t_xmousemove * z_xpercentage + t_ymousemove * z_ypercentage + playerweapon.X_adj * 6000;
         t_z = Mathf.Clamp(t_z, t_z_Negmaxrptang, t_z_maxrotang);
         Quaternion t_zxdj = Quaternion.AngleAxis(t_z, -Vector3.forward);
         Quaternion t_delta = originrot * t_xadj * t_yxdj * t_zxdj;

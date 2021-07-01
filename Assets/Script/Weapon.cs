@@ -326,6 +326,7 @@ public class Weapon : MonoBehaviour
 
             if (t_firerate > firerate_single)
             {
+                /*
                 do
                 {
                     t_randomValue = Random.Range(1, 4);
@@ -345,6 +346,8 @@ public class Weapon : MonoBehaviour
                 {
                     weaponanimator.SetTrigger("SingleShoot3");
                 }
+                */
+                weaponanimator.SetTrigger("SingleShoot3");
                 isCamera_shaking = true;
 
                 isRecoil = true;
@@ -404,6 +407,10 @@ public class Weapon : MonoBehaviour
             isRecoil = false;
             t_y = 0;
             precious_y = 0;
+            t_x = 0;
+            precious_x = 0;
+            y_adj = 0;
+            x_adj = 0;
             return;
         }     
         t_y = Mathf.Lerp(t_y,d_y, RecoilCam_smooth*Time.deltaTime);
@@ -414,7 +421,7 @@ public class Weapon : MonoBehaviour
         precious_x = t_x;
         Debug.Log($"t_y = {t_y}");
         Debug.Log($"d_y = {d_y}");
-        Debug.Log(precious_y);
+        Debug.Log(y_adj);
         
     }
 
