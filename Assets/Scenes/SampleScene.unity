@@ -3807,8 +3807,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917365147}
-  m_LocalRotation: {x: -0.0000031833097, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.38389117, y: 0.07539438, z: -0.3441756}
+  m_LocalRotation: {x: -0.0012019803, y: -0.000019457697, z: 0.000013833342, w: 0.9999993}
+  m_LocalPosition: {x: -0.38392574, y: 0.07717413, z: -0.34411985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 518419488}
@@ -4236,8 +4236,8 @@ MonoBehaviour:
   x_maxrotang_ads: 0.5
   y_Negmaxrotang_ads: -0.5
   y_maxrotang_ads: 0.5
-  z_maxrotang_ads: 1
-  z_Negmaxrotang_ads: -1
+  z_maxrotang_ads: 1.2
+  z_Negmaxrotang_ads: -1.2
   moveweaponsway: {fileID: 2026722655}
   weaponpoint: {fileID: 518419487}
   playerweapon: {fileID: 436105444}
