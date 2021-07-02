@@ -126,7 +126,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         //默认装备武器
-        equip(0);
+        //equip(0);
         _aimmode = AimMode.hip;
 
         //ads初始化
