@@ -4221,7 +4221,7 @@ MonoBehaviour:
   y_sensitivity: 70
   x_sensitivity: 70
   x_Negmaxrotang: -5
-  x_maxrotang: 5
+  x_maxrotang: 6
   smooth: 10
   y_Negmaxrotang: -2.5
   y_maxrotang: 2.5
@@ -4234,13 +4234,16 @@ MonoBehaviour:
   x_sensitivity_ads: 40
   x_Negmaxrotang_ads: -0.5
   x_maxrotang_ads: 0.5
-  y_Negmaxrotang_ads: -3
+  y_Negmaxrotang_ads: -0.7
   y_maxrotang_ads: 0.7
-  z_maxrotang_ads: 0.6
-  z_Negmaxrotang_ads: -0.6
+  z_maxrotang_ads: 5
+  z_Negmaxrotang_ads: -5
   moveweaponsway: {fileID: 2026722655}
   weaponpoint: {fileID: 518419487}
   playerweapon: {fileID: 436105444}
+  Recoil_x_sen: 0
+  Recoil_y_sen: 0
+  Recoil_z_sen: 70
 --- !u!1 &1123353641
 GameObject:
   m_ObjectHideFlags: 0
