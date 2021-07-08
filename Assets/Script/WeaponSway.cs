@@ -109,9 +109,9 @@ public class WeaponSway : MonoBehaviour
 
 
         //Calculate input
-        float t_xmousemove = Input.GetAxis("Mouse X") * t_x_sensitivity * Time.deltaTime + playerweapon.X_adj * 15;
+        float t_xmousemove = Input.GetAxis("Mouse X") * t_x_sensitivity * Time.deltaTime + playerweapon.X_adj * 120;
         t_xmousemove = Mathf.Clamp(t_xmousemove, t_x_Negmaxrotang, t_x_maxrotang);
-        float t_ymousemove = Input.GetAxis("Mouse Y") * t_y_sensitivity * Time.deltaTime - playerweapon.Y_adj*400;
+        float t_ymousemove = Input.GetAxis("Mouse Y") * t_y_sensitivity * Time.deltaTime - playerweapon.Y_adj*100;
         t_ymousemove = Mathf.Clamp(t_ymousemove, t_y_Negmaxrotang, t_y_maxrotang);
 
 
