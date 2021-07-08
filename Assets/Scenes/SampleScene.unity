@@ -4222,7 +4222,7 @@ MonoBehaviour:
   x_sensitivity: 70
   x_Negmaxrotang: -5
   x_maxrotang: 5
-  smooth: 5
+  smooth: 10
   y_Negmaxrotang: -2.5
   y_maxrotang: 2.5
   z_xpercentage: 1.6
@@ -4236,8 +4236,8 @@ MonoBehaviour:
   x_maxrotang_ads: 0.5
   y_Negmaxrotang_ads: -0.5
   y_maxrotang_ads: 0.5
-  z_maxrotang_ads: 1.2
-  z_Negmaxrotang_ads: -1.2
+  z_maxrotang_ads: 0.6
+  z_Negmaxrotang_ads: -0.6
   moveweaponsway: {fileID: 2026722655}
   weaponpoint: {fileID: 518419487}
   playerweapon: {fileID: 436105444}
