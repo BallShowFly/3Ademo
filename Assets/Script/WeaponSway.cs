@@ -43,20 +43,25 @@ public class WeaponSway : MonoBehaviour
     private Quaternion originrot;
 
     [Header("RecoilSway")]
+    public GameObject weaponpoint_1;
     public float Recoil_x_sen;
     public float Recoil_y_sen;
     public float Recoil_z_sen;
+    private Quaternion originrot_1;
+    public float smooth_1;
 
     // Start is called before the first frame update
     void Start()
     {
         originrot = weaponpoint.transform.localRotation;
+        originrot_1 = weaponpoint_1.transform.localRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
         lookweaponsway();
+        shootweaponsway();
     }
 
 
@@ -114,9 +119,9 @@ public class WeaponSway : MonoBehaviour
 
 
         //Calculate input
-        float t_xmousemove = Input.GetAxis("Mouse X") * t_x_sensitivity * Time.deltaTime + playerweapon.X_adj * Recoil_x_sen;
+        float t_xmousemove = Input.GetAxis("Mouse X") * t_x_sensitivity * Time.deltaTime ;
         t_xmousemove = Mathf.Clamp(t_xmousemove, t_x_Negmaxrotang, t_x_maxrotang);
-        float t_ymousemove = Input.GetAxis("Mouse Y") * t_y_sensitivity * Time.deltaTime - playerweapon.Y_adj * Recoil_y_sen;
+        float t_ymousemove = Input.GetAxis("Mouse Y") * t_y_sensitivity * Time.deltaTime ;
         t_ymousemove = Mathf.Clamp(t_ymousemove, t_y_Negmaxrotang, t_y_maxrotang);
 
 
@@ -125,7 +130,7 @@ public class WeaponSway : MonoBehaviour
         Quaternion t_xadj = Quaternion.AngleAxis(t_xmousemove, -Vector3.up);
         Quaternion t_yxdj = Quaternion.AngleAxis(t_ymousemove, Vector3.right);
 
-        float t_z = t_xmousemove * z_xpercentage + t_ymousemove * z_ypercentage + playerweapon.X_adj * Recoil_z_sen;
+        float t_z = t_xmousemove * z_xpercentage + t_ymousemove * z_ypercentage;
         t_z = Mathf.Clamp(t_z, t_z_Negmaxrptang, t_z_maxrotang);
         Quaternion t_zxdj = Quaternion.AngleAxis(t_z, -Vector3.forward);
         Quaternion t_delta = originrot * t_xadj * t_yxdj * t_zxdj;
@@ -141,6 +146,27 @@ public class WeaponSway : MonoBehaviour
 
 
     }
+
+    void shootweaponsway()
+    {
+        float t_x = playerweapon.X_adj * Recoil_x_sen;
+        float t_y = playerweapon.Y_adj * Recoil_y_sen;
+        float t_z = playerweapon.X_adj * Recoil_z_sen; 
+        Quaternion x_adj = Quaternion.AngleAxis(t_x, -Vector3.up);
+        Quaternion y_adj = Quaternion.AngleAxis(t_y, Vector3.right);
+        Quaternion z_adj = Quaternion.AngleAxis(t_z, -Vector3.forward);
+
+
+
+
+        Quaternion t_delta = originrot_1 * x_adj * y_adj * z_adj;
+
+        weaponpoint_1.transform.localRotation = Quaternion.Lerp(weaponpoint_1.transform.localRotation, t_delta, smooth_1* Time.deltaTime);
+
+
+        
+    }
+
     /*
     void Moveweaponway()
     {
