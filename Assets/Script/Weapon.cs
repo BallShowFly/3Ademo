@@ -60,20 +60,22 @@ public class Weapon : MonoBehaviour
     [Header("shootcamera")]
     public float X;
     public float Y;
+    public float Z;
     public float Zmin;
     public float Zmax;
     public float shootcamera_time;
     public GameObject cameraparent;
-    private Quaternion originrot;
+    public CurveMotion curvemotion;
+    public CurveMotion_1 curveMotion_1;
 
+    private Quaternion originrot;
     static private float curve_xminvalue_shoot = 1;
     static private float curve_xmaxvalue_shoot = 1;
     static private float curve_yminvalue_shoot = 1;
     static private float curve_ymaxvalue_shoot = 1;
 
-    public AnimationCurve ShootCameraCurve = new AnimationCurve(new Keyframe(curve_xmaxvalue_shoot, curve_xmaxvalue_shoot), new Keyframe(curve_yminvalue_shoot, curve_ymaxvalue_shoot));
+    public AnimationCurve ShootCameraCurve = new AnimationCurve(new Keyframe(curve_xminvalue_shoot, curve_xmaxvalue_shoot), new Keyframe(curve_yminvalue_shoot, curve_ymaxvalue_shoot));
 
-    private bool isCamera_shaking;
     private float shootCamera_currenttime;
 
     [Header("recoil")]
@@ -138,7 +140,9 @@ public class Weapon : MonoBehaviour
         //射击初始化
         t_firerate = 0;
         ani_iswitchtoads = false;
+        /*
         originrot = cameraparent.transform.localRotation;
+        */
         isRecoil = false;
         t_y = 0;
         t_x = 0;
@@ -169,10 +173,7 @@ public class Weapon : MonoBehaviour
             Shoot();
         }
 
-        if (isCamera_shaking == true)
-        {
-            shootcamera();
-        }
+       
 
         if(isRecoil == false)
         {
@@ -324,7 +325,7 @@ public class Weapon : MonoBehaviour
                 return;
             }
 
-            if (t_firerate > firerate_single)
+            if (t_firerate > firerate)
             {
                 /*
                 do
@@ -348,8 +349,9 @@ public class Weapon : MonoBehaviour
                 }
                 */
                 weaponanimator.SetTrigger("SingleShoot3");
-                isCamera_shaking = true;
-
+                curvemotion.isopreate = true;
+                curveMotion_1.isopreate = true;
+        
                 isRecoil = true;
                 float[] recoil_load = recoil_cal();
                 d_y = recoil_load[0];
@@ -362,35 +364,7 @@ public class Weapon : MonoBehaviour
         }
 
     }
-
-    void shootcamera()
-    {
-        if (shootCamera_currenttime >= shootcamera_time)
-        {
-            shootCamera_currenttime = 0;
-            isCamera_shaking = false;
-            return;
-        }
-        shootCamera_currenttime += Time.deltaTime;
-
-        float t_y = Random.Range(Zmin, Zmax);
-        float randomvalule = Random.Range(1, 3);
-        if (randomvalule == 1)
-        {
-            t_y = -t_y;
-        }
-
-        float time_ratio = curve_xmaxvalue_shoot / shootcamera_time;
-        float t_camshake_x = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * X;
-        float t_camshake_y = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * Y;
-        float t_camshake_z = ShootCameraCurve.Evaluate(shootCamera_currenttime * time_ratio) * t_y;
-
-        Quaternion t_xadj = Quaternion.AngleAxis(t_camshake_x, -Vector3.up);
-        Quaternion t_yadj = Quaternion.AngleAxis(t_camshake_y, Vector3.right);
-        Quaternion t_zadj = Quaternion.AngleAxis(t_camshake_z, -Vector3.forward);
-
-        cameraparent.transform.localRotation = originrot * t_xadj * t_yadj * t_zadj;
-    }
+    
 
     float[] recoil_cal()
     {

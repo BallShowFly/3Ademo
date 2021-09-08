@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\Script\AdsToHipAnimaitionState.cs" />
     <Compile Include="Assets\Script\Curve.cs" />
+    <Compile Include="Assets\Script\CurveMotion.cs" />
+    <Compile Include="Assets\Script\CurveMotion_1.cs" />
     <Compile Include="Assets\Script\Gamemanager.cs" />
     <Compile Include="Assets\Script\Look.cs" />
     <Compile Include="Assets\Script\Motion.cs" />
