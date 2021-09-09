@@ -349,7 +349,11 @@ public class Weapon : MonoBehaviour
                 }
                 */
                 weaponanimator.SetTrigger("SingleShoot3");
-                curvemotion.isopreate = true;
+                if(curvemotion.isopreate == true)
+                {
+                    curvemotion.time_current = 0;
+                }
+                curvemotion.isopreate = true;              
                 curveMotion_1.isopreate = true;
         
                 isRecoil = true;

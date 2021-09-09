@@ -6,7 +6,7 @@ public class CurveMotion : MonoBehaviour
 {
     [Header("basic")]
     public float time_total;
-    protected float time_current;
+    public float time_current;
     public GameObject _object;
     protected Quaternion origin_rot;
     protected Vector3 origin_pos;
