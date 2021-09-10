@@ -125,7 +125,6 @@ public class WeaponSway : MonoBehaviour
         t_ymousemove = Mathf.Clamp(t_ymousemove, t_y_Negmaxrotang, t_y_maxrotang);
 
 
-
         //Calculate RotateAngle
         Quaternion t_xadj = Quaternion.AngleAxis(t_xmousemove, -Vector3.up);
         Quaternion t_yxdj = Quaternion.AngleAxis(t_ymousemove, Vector3.right);
@@ -137,8 +136,6 @@ public class WeaponSway : MonoBehaviour
 
         //rotate 
         weaponpoint.transform.localRotation = Quaternion.Lerp(weaponpoint.transform.localRotation, t_delta, smooth * Time.deltaTime);
-
-
 
 
         #endregion

@@ -348,14 +348,32 @@ public class Weapon : MonoBehaviour
                     weaponanimator.SetTrigger("SingleShoot3");
                 }
                 */
+
+                //调用武器动画
                 weaponanimator.SetTrigger("SingleShoot3");
+                //调用镜头动画
+
+              
                 if(curvemotion.isopreate == true)
                 {
                     curvemotion.time_current = 0;
                 }
-                curvemotion.isopreate = true;              
-                curveMotion_1.isopreate = true;
-        
+
+                if (t_firerate > 0.1)
+                {
+                    curvemotion.isopreate = true;
+                    Debug.Log($"射击间隔：{t_firerate}");
+
+                }
+                else
+                {
+                    curvemotion.isopreate = false;
+                    curveMotion_1.isopreate = true;
+                }
+          
+
+
+                //计算后坐力
                 isRecoil = true;
                 float[] recoil_load = recoil_cal();
                 d_y = recoil_load[0];
@@ -397,9 +415,6 @@ public class Weapon : MonoBehaviour
         precious_y = t_y;
         x_adj = t_x - precious_x;
         precious_x = t_x;
-        Debug.Log($"t_y = {t_y}");
-        Debug.Log($"d_y = {d_y}");
-        Debug.Log(y_adj);
         
     }
 
