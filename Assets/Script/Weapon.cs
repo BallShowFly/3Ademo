@@ -350,7 +350,7 @@ public class Weapon : MonoBehaviour
                 */
 
                 //调用武器动画
-                weaponanimator.SetTrigger("SingleShoot3");
+
                 //调用镜头动画
 
               
@@ -362,7 +362,6 @@ public class Weapon : MonoBehaviour
                 if (t_firerate > 0.1)
                 {
                     curvemotion.isopreate = true;
-                    Debug.Log($"射击间隔：{t_firerate}");
 
                 }
                 else
@@ -378,10 +377,41 @@ public class Weapon : MonoBehaviour
                 float[] recoil_load = recoil_cal();
                 d_y = recoil_load[0];
                 d_x = recoil_load[1];
-
                 t_firerate = 0;
-                camera_animator.SetTrigger("ShootCamera");
+
+                //调用武器动画
+                weaponanimator.SetFloat("up", 1f);
+                float t_left_right = 0.3f;
+                if(d_x > 0)
+                {
+                    if(d_x < recoil_max_hor /2)
+                    {
+                        t_left_right = 0.5f;
+                    }
+                    else if(d_x >= recoil_max_hor /2)
+                    {
+                        t_left_right = d_x * 1 / recoil_max_hor;
+                    }
+                }
+              
+                if(d_x <= 0)
+                {
+                    if(d_x > recoil_min_hor/2)
+                    {
+                        t_left_right = -0.5f;
+                    }
+                    else if (d_x <= recoil_min_hor/2)
+                    {
+                        t_left_right = -(d_x * 1 / recoil_min_hor);
+                    }
+
+                }
+                Debug.Log($"水平后坐力：{d_x} ，动画参数：{t_left_right}");
+                weaponanimator.SetFloat("left-right",t_left_right);
+                weaponanimator.SetTrigger("SingleShoot3");
+
                 return;
+
             }
         }
 

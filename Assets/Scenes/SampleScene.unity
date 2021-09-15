@@ -1858,8 +1858,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   recoil_min_ver: 0.3
   recoil_max_ver: 0.35
-  recoil_max_hor: -0.5
-  recoil_min_hor: 0.5
+  recoil_max_hor: 0.5
+  recoil_min_hor: -0.5
   recoilcamera: {fileID: 921050527}
   RecoilCam_smooth: 120
   weapon: {fileID: 1909000045}
@@ -4399,10 +4399,10 @@ MonoBehaviour:
   weaponpoint: {fileID: 518419487}
   playerweapon: {fileID: 436105444}
   weaponpoint_1: {fileID: 520450465}
-  Recoil_x_sen: 80
-  Recoil_y_sen: -50
-  Recoil_z_sen: 50
-  smooth_1: 1
+  Recoil_x_sen: 0
+  Recoil_y_sen: 0
+  Recoil_z_sen: 0
+  smooth_1: 0
 --- !u!1 &1123353641
 GameObject:
   m_ObjectHideFlags: 0
